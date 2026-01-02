@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,7 @@ import { Check, Heart, Users, BookOpen, Utensils } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Donate = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleDonate = (amount: string) => {
@@ -13,6 +15,10 @@ const Donate = () => {
       title: "Thank you for your generosity!",
       description: `Donation of ${amount} will be processed. Redirecting to payment...`,
     });
+  };
+
+  const handleCustomDonate = () => {
+    navigate("/payment");
   };
 
   return (
@@ -231,7 +237,8 @@ const Donate = () => {
                 </Button>
               </div>
               <Button 
-                onClick={() => handleDonate("Custom Amount")}
+                // onClick={() => handleDonate("Custom Amount")}
+                onClick={handleCustomDonate}
                 className="w-full h-12 bg-gradient-hero hover:opacity-90 transition-opacity"
               >
                 Donate Custom Amount
